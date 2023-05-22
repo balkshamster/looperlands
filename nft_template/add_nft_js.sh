@@ -17,7 +17,8 @@ fi
 id=`egrep -oh "\:.*([[:digit:]]+)*@lastid@" ../client/js/gametypes.js | cut -d " " -f 2`
 echo id: $id
 nextId=$((id+1))
-echo Adding $NFT_ID, $type, $nextId
+randNum=$((1 + $RANDOM % 10))
+echo Adding $NFT_ID, $type, $nextId, Random number: $randNum
 
 update_gametypes() {
     gameTypePath=$1
@@ -28,8 +29,16 @@ update_gametypes() {
     # Add the NFT sprite
     newLine="    $NFT_ID: [Types.Entities.$NFT_ID, \"$type\"],\n    // @nextSpriteLine@"
     sed -e "s!.*@nextSpriteLine@.*!$newLine!g" tmp.js > tmp2.js
-    mv tmp2.js $1
+    if [ "$type" = "armor" ]; then    
+      # Add the armor rank
+      newLine="        case Types.Entities.$NFT_ID:\n            return $randNum;\n        // @nextarmorrank@"
+      sed -e "s!.*@nextarmorrank@.*!$newLine!g" tmp.js > tmp3.js
+    else
+      echo "todo"
+    fi
+    mv tmp3.js $1
     rm tmp.js
+    rm tmp2.js
 }
 
 update_gametypes "../client/js/gametypes.js"
