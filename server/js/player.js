@@ -82,12 +82,9 @@ module.exports = Player = Character.extend({
                 self.isDead = false;
                 discord.sendMessage(`Player ${self.name} has joined the game.`);
 
- 
-                /*
                 setInterval(function(){
                     self.server.pushRelevantEntityListTo(self);
-                }, 100);
-                */
+                }, 1000);
                 
             }
             else if(action === Types.Messages.WHO) {
@@ -140,7 +137,6 @@ module.exports = Player = Character.extend({
             }
             else if(action === Types.Messages.ATTACK) {
                 var mob = self.server.getEntityById(message[1]);
-                console.log(self.name + "attacking " + mob.id);
                 if(mob) {
                     self.setTarget(mob);
                     self.server.broadcastAttacker(self);
