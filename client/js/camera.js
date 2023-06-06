@@ -29,6 +29,7 @@ define(function() {
     
             this.gridX = Math.floor( x / 16 );
             this.gridY = Math.floor( y / 16 );
+            //console.log("Camera position", x, y, this.gridX, this.gridY);
         },
 
         setGridPosition: function(x, y) {
@@ -37,6 +38,7 @@ define(function() {
         
             this.x = this.gridX * 16;
             this.y = this.gridY * 16;
+            //console.log("Grid position ", this.gridX, this.gridY);
         },
 
         lookAt: function(entity) {

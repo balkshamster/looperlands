@@ -593,6 +593,7 @@ function(Camera, Item, Character, Player, Timer, Mob) {
                 tilesetwidth = this.tileset.width / m.tilesize;
         
             this.game.forEachVisibleTile(function (id, index) {
+                console.log("id, index",id, index);
                 if(!m.isHighTile(id) && !m.isAnimatedTile(id)) { // Don't draw unnecessary tiles
                     self.drawTile(self.background, id, self.tileset, tilesetwidth, m.width, index);
                 }

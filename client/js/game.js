@@ -726,7 +726,9 @@ function(InfoManager, BubbleManager, Renderer, Mapx, Animation, Sprite, Animated
             if(this.started) {
                 this.updateCursorLogic();
                 this.updater.update();
+                this.renderer.renderStaticCanvases();
                 this.renderer.renderFrame();
+                this.focusPlayer();
             }
 
             if(!this.isStopped) {
@@ -1662,6 +1664,7 @@ function(InfoManager, BubbleManager, Renderer, Mapx, Animation, Sprite, Animated
          */
         makePlayerGoTo: function(x, y) {
             this.makeCharacterGoTo(this.player, x, y);
+            console.log("Player x,y", this.player.x, this.player.y);
         },
     
         /**
@@ -1780,6 +1783,10 @@ function(InfoManager, BubbleManager, Renderer, Mapx, Animation, Sprite, Animated
             this.camera.forEachVisiblePosition(function(x, y) {
                 if(!m.isOutOfBounds(x, y)) {
                     callback(m.GridPositionToTileIndex(x, y) - 1);
+                } else {
+                    console.log("out of bonds index");
+                    callback(3);
+       
                 }
             }, extra);
         },
