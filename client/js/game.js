@@ -726,11 +726,19 @@ function(InfoManager, BubbleManager, Renderer, Mapx, Animation, Sprite, Animated
             this.currentTime = new Date().getTime();
 
             if(this.started) {
+                
+                this.renderer.createCamera();
+                this.renderer.context.mozImageSmoothingEnabled = false;
+                this.renderer.background.mozImageSmoothingEnabled = false;
+                this.renderer.foreground.mozImageSmoothingEnabled = false;                
+                this.camera = this.renderer.camera;
+                this.renderer.initFont();
                 this.updateCursorLogic();
                 this.updater.update();
+                this.focusPlayer();
+                this.initAnimatedTiles();
                 this.renderer.renderStaticCanvases();
                 this.renderer.renderFrame();
-                this.focusPlayer();
             }
 
             if(!this.isStopped) {
@@ -1785,10 +1793,6 @@ function(InfoManager, BubbleManager, Renderer, Mapx, Animation, Sprite, Animated
             this.camera.forEachVisiblePosition(function(x, y) {
                 if(!m.isOutOfBounds(x, y)) {
                     callback(m.GridPositionToTileIndex(x, y) - 1);
-                } else {
-                    console.log("out of bonds index");
-                    callback(3);
-       
                 }
             }, extra);
         },

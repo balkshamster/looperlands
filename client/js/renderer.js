@@ -592,8 +592,12 @@ function(Camera, Item, Character, Player, Timer, Mob) {
                 m = this.game.map,
                 tilesetwidth = this.tileset.width / m.tilesize;
         
+
+            this.clearScreen(this.background);
             this.game.forEachVisibleTile(function (id, index) {
-                console.log("id, index",id, index);
+                //console.log("id, index",id, index, !m.isHighTile(id) && !m.isAnimatedTile(id));
+                //self.clearTile(self.background, m.width, index);
+
                 if(!m.isHighTile(id) && !m.isAnimatedTile(id)) { // Don't draw unnecessary tiles
                     self.drawTile(self.background, id, self.tileset, tilesetwidth, m.width, index);
                 }
@@ -728,8 +732,8 @@ function(Camera, Item, Character, Player, Timer, Mob) {
     
         renderStaticCanvases: function() {
             this.background.save();
-                this.setCameraView(this.background);
-                this.drawTerrain();
+            this.setCameraView(this.background);
+            this.drawTerrain();
             this.background.restore();
         },
 
