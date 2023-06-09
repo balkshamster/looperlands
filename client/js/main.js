@@ -351,7 +351,6 @@ define(['jquery', 'app'], function($, App) {
             
             $('#respawn').click(function(event) {
                 game.audioManager.playSound("revive");
-                game.restart();
                 $('body').removeClass('death');
             });
             
