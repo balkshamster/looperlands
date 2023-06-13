@@ -31,13 +31,13 @@ curl -X POST -H "Content-Type: application/json" -H "x-api-key: $LOOPWORMS_API_K
 # Local development
 The following script will build the client and server and run them locally, so you do not have to run the above steps.
 ```bash
-LOOPWORMS_API_KEY=<api-key-here> ./run-local.sh
+LOOPWORMS_API_KEY=<api-key-here>  LOOPWORMS_LOOPERLANDS_BASE_URL=127.0.0.1 ./run-local.sh
 ```
 To kill it, press Ctrl+C.
 
 To get a new session run:
 ```bash
-LOOPWORMS_API_KEY=<api-key-here> ./local-session.sh
+LOOPWORMS_API_KEY=<api-key-here>  LOOPWORMS_LOOPERLANDS_BASE_URL=127.0.0.1 ./local-session.sh
 ```
 This will print out a URL and open up the URL in your browser
 
