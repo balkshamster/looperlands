@@ -4,7 +4,7 @@
     "debug_level": "info",
     "nb_players_per_world": 1000,
     "nb_worlds": 1,
-    "maps" : [
+    "maps": [
         "main"
     ],
     "map_directory": "./server/maps/",
